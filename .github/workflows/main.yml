@@ -3,7 +3,6 @@
 on:
   push:
     branches: ["main"]
-
   workflow_dispatch:
 
 permissions:
@@ -17,9 +16,6 @@ concurrency:
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -29,7 +25,6 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 8.0.x
-
 
       - name: Install .NET Wasm Tools
         run: dotnet workload install wasm-tools
